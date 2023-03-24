@@ -4,6 +4,7 @@ from typing import List, Dict
 
 @lru_cache
 def read(path: str) -> List[Dict]:
+    # iniciando projeto erro set python version
     """Reads a file from a given path and returns its contents
 
     Parameters
