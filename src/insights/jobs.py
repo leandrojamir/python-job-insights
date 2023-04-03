@@ -23,22 +23,33 @@ def read(path: str) -> List[Dict]:
     return list
 
 
+# (.venv) jamir@jamir-X550CA:~/Projetos/computer-science/
+# sd-023-b-project-job-insights$ python3 -i src/insights/jobs.py
+# >>> read("data/jobs.csv") OK
+# tests/test_jobs.py::test_read_jobs PASSED
+
+
+# 2 - Implemente a função get_unique_job_types
+# Agora que temos como carregar os dados, podemos começar a extrair informação
+# deles. Primeiro, vamos identificar quais tipos de empregos existem.
+# A função deve receber o path do arquivo csv com os dados.
 def get_unique_job_types(path: str) -> List[str]:
-    """Checks all different job types and returns a list of them
+    # Deve invocar a função jobs.read com o path recebido para obter os dados.
+    info_file = read(path)
+    # Deve retornar uma lista de valores únicos presentes na coluna job_type.
+    types_of_jobs_list = []
+    for info in info_file:
+        if info["job_type"] not in types_of_jobs_list:
+            types_of_jobs_list.append(info["job_type"])
+    return types_of_jobs_list
 
-    Must call `read`
 
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique job types
-    """
-    raise NotImplementedError
+# (.venv) jamir@jamir-X550CA:~/Projetos/computer-science/
+# sd-023-b-project-job-insights$ python3 -i src/insights/jobs.py
+# >>> get_unique_job_types("data/jobs.csv")
+# ['FULL_TIME', 'PART_TIME', 'OTHER', 'INTERN', 'CONTRACTOR', 'TEMPORARY']
+# >>>
+# tests/test_jobs.py::test_get_unique_job_types PASSED
 
 
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
