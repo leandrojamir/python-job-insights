@@ -52,19 +52,21 @@ def get_unique_job_types(path: str) -> List[str]:
 # tests/test_jobs.py::test_get_unique_job_types PASSED
 
 
+# 6 - Implemente a função filter_by_job_type
+# Os empregos estão listados em um aplicativo web. Para permitir que a pessoa
+# usuária possa filtrar os empregos por tipo de emprego, vamos precisar
+# implementar esse filtro.
+
+# A função deve receber uma lista de dicionários jobs como primeiro parâmetro.
+# A função deve receber uma string job_type como segundo parâmetro.
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
-    """Filters a list of jobs by job_type
+    # A função deve retornar uma lista com todos os empregos onde a coluna
+    # job_type corresponde ao parâmetro job_type.
+    all_jobs_list = []
+    for info in jobs:
+        if info["job_type"] == job_type:
+            all_jobs_list.append(info)
+    return all_jobs_list
 
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    job_type : str
-        Job type for the list filter
 
-    Returns
-    -------
-    list
-        List of jobs with provided job_type
-    """
-    raise NotImplementedError
+# tests/test_jobs.py::test_filter_by_job_type PASSED
