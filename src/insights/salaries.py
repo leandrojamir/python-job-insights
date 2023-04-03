@@ -56,30 +56,55 @@ def get_min_salary(path: str) -> int:
 # tests/test_salaries.py::test_get_min_salary PASSED
 
 
+# 8 - Implemente a função matches_salary_range
+# O aplicativo vai precisar filtrar os empregos por salário também. Como uma
+# função auxiliar, implemente matches_salary_range para conferir que o salário
+# procurado está dentro da faixa salarial daquele emprego. Vamos aproveitar
+# também para conferir se a faixa salarial faz sentido -- isto é, se o valor
+# mínimo é menor que o valor máximo.
+
+# 'matches_salary_range' is too complex (6)Flake8(C901)
+def min_max_salary_doesnt(job):
+    # A função deve lançar um erro ValueError nos seguintes casos:
+    # alguma das chaves min_salary ou max_salary estão ausentes no dicionário;
+    if ("min_salary" not in job) or ("max_salary" not in job):
+        raise ValueError("min/max_salary doesn't exists")
+
+
+# A função deve receber um dicionário job como primeiro parâmetro,
+# com as chaves min_salary e max_salary, que podem ser números ou strings que
+# representem números.
+# A função deve receber um número ou string que represente o número salary
+# como segundo parâmetro.
 def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
-    """Checks if a given salary is in the salary range of a given job
-
-    Parameters
-    ----------
-    job : dict
-        The job with `min_salary` and `max_salary` keys
-    salary : int
-        The salary to check if matches with salary range of the job
-
-    Returns
-    -------
-    bool
-        True if the salary is in the salary range of the job, False otherwise
-
-    Raises
-    ------
+    """
     ValueError
         If `job["min_salary"]` or `job["max_salary"]` doesn't exists
         If `job["min_salary"]` or `job["max_salary"]` aren't valid integers
         If `job["min_salary"]` is greather than `job["max_salary"]`
         If `salary` isn't a valid integer
     """
-    raise NotImplementedError
+    min_max_salary_doesnt(job)
+    # A função deve lançar um erro ValueError nos seguintes casos:
+    # alguma das chaves min_salary ou max_salary tem valores não-numéricos;
+    # o parâmetro salary tem valores não numéricos;
+    try:
+        min_salary = int(job["min_salary"])
+        max_salary = int(job["max_salary"])
+        # o valor de min_salary é maior que o valor de max_salary;
+        if min_salary > max_salary:
+            raise ValueError("min_salary is greather than max_salary")
+        salary = int(salary)
+        # A função deve retornar True se o salário procurado estiver dentro da
+        # faixa salarial ou False se não estiver.
+        if min_salary <= salary <= max_salary:
+            return True
+        else:
+            return False
+    except (ValueError, TypeError, KeyError):
+        raise ValueError("min/max_salary or salary aren't valid integers")
+
+    # tests/test_salaries.py::test_matches_salary_range PASSED
 
 
 def filter_by_salary_range(
