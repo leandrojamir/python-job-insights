@@ -35,19 +35,20 @@ def get_unique_industries(path: str) -> List[str]:
 # tests/test_industries.py::test_get_unique_industries PASSED
 
 
+# 7 - Implemente a função filter_by_industry
+# Do mesmo modo, o aplicativo precisa permitir uma filtragem por indústria.
+# Vamos precisar implementar esse filtro também.
+
+# A função deve receber uma lista de dicionários jobs como primeiro parâmetro.
+# A função deve receber uma string industry como segundo parâmetro.
 def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
-    """Filters a list of jobs by industry
+    # A função deve retornar uma lista de dicionários com todos os empregos
+    # onde a coluna industry corresponde ao parâmetro "industry".
+    all_jobs_list = []
+    for info in jobs:
+        if info["industry"] == industry:
+            all_jobs_list.append(info)
+    return all_jobs_list
 
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    industry : str
-        Industry for the list filter
 
-    Returns
-    -------
-    list
-        List of jobs with provided industry
-    """
-    raise NotImplementedError
+# tests/test_industries.py::test_filter_by_industry PASSED
