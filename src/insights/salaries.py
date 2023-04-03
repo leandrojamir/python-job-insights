@@ -1,22 +1,38 @@
 from typing import Union, List, Dict
 
+# 4 - Implemente a função get_max_salary
+# Os dados apresentam faixas salariais para cada emprego exibido.
+# Vamos agora encontrar o maior valor de todas as faixas.
+from src.insights import jobs
+
 
 def get_max_salary(path: str) -> int:
-    """Get the maximum salary of all jobs
+    # A função deve obter os dados da mesma forma que o requisito 2.
+    info_file = jobs.read(path)
+    # A função deve retornar um valor inteiro com o maior salário presente
+    # na coluna "max_salary".
+    salary_list = []
+    for info in info_file:
+        salary = info["max_salary"]
+        # A função deve ignorar os valores ausentes.
+        # https://acervolima.com/metodo-python-string-isdigit-1/
+        if salary.isdigit():
+            salary_list.append(int(salary))
+    print(max(salary_list))
+    print(type(salary_list))
+    print(type(salary))
+    return max(salary_list)
 
-    Must call `read`
 
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The maximum salary paid out of all job opportunities
-    """
-    raise NotImplementedError
+# tests/test_salaries.py::test_get_max_salary 99860 
+# <class 'list'>
+# <class 'str'>
+# FAILED
+# o maior pelo excell é 383416
+# job_title
+# Commodities Quantitative Analyst - Executive Director
+# company	state	city	min_salary	max_salary
+# JPMorgan Chase &amp;amp; Co	TX	Houston	195818	383416
 
 
 def get_min_salary(path: str) -> int:
@@ -64,8 +80,7 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
 
 
 def filter_by_salary_range(
-    jobs: List[dict],
-    salary: Union[str, int]
+    jobs: List[dict], salary: Union[str, int]
 ) -> List[Dict]:
     """Filters a list of jobs by salary range
 
