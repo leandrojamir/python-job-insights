@@ -1,22 +1,38 @@
 from typing import List, Dict
 
+# 3 - Implemente a função get_unique_industries
+# Da mesma forma, agora iremos identificar quais indústrias estão
+# representadas nesse conjunto de dados.
+from src.insights import jobs
+
 
 def get_unique_industries(path: str) -> List[str]:
-    """Checks all different industries and returns a list of them
+    # A função deve obter os dados da mesma forma que o requisito 2.
+    info_file = jobs.read(path)
+    # Deve retornar uma lista de valores únicos presentes na coluna "industry".
+    industry_list = []
+    for info in info_file:
+        if (
+            info["industry"] not in industry_list
+            # A função desconsidera valores vazios
+            and info["industry"] != ""
+        ):
+            industry_list.append(info["industry"])
+    # print(industry_list)
+    # nota: estava printando todas com espaço " "
+    # tests/test_industries.py::test_get_unique_industries
+    # ['Finance', '', 'Health Care', 'Construction, Repair & Maintenance',
+    # 'Information Technology', 'Telecommunications', 'Biotech &
+    # Pharmaceuticals', 'Business Services', 'Retail', 'Government',
+    # 'Oil, Gas, Energy & Utilities', 'Real Estate', 'Manufacturing',
+    # 'Insurance', 'Media', 'Consumer Services', 'Arts, Entertainment
+    # & Recreation', 'Transportation & Logistics', 'Education',
+    # 'Accounting & Legal', 'Non-Profit', 'Restaurants, Bars & Food Services',
+    #  'Agriculture & Forestry', 'Aerospace & Defense']FAILED
+    return industry_list
 
-    Must call `read`
 
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique industries
-    """
-    raise NotImplementedError
+# tests/test_industries.py::test_get_unique_industries PASSED
 
 
 def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
