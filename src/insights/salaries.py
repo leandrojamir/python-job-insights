@@ -107,21 +107,38 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
     # tests/test_salaries.py::test_matches_salary_range PASSED
 
 
+# 9 - Implemente a função filter_by_salary_range
+# Agora vamos implementar o filtro propriamente dito.
+# Para esta filtragem, podemos usar a função auxiliar implementada no
+# requisito anterior -- tomando o cuidado de descartar os empregos que
+# apresentarem faixas salariais inválidas.
+
+# A função deve receber uma lista de dicionários jobs como primeiro parâmetro.
+# A função deve receber um número ou string salary como segundo parâmetro.
 def filter_by_salary_range(
     jobs: List[dict], salary: Union[str, int]
 ) -> List[Dict]:
-    """Filters a list of jobs by salary range
+    # A função deve retornar uma lista com todos os empregos
+    all_jobs_list = []
+    # descartar os empregos que apresentarem faixas salariais inválidas
+    # 'filter_by_salary_range' is too complex (6)Flake8(C901)
+    if salary is None or not (str(salary).isnumeric()):
+        return []
+    for info in jobs:
+        # A função deve ignorar os empregos com valores inválidos para
+        # min_salary ou max_salary.
+        if info["min_salary"] != "" and info["max_salary"] != "":
+            # A função deve retornar uma lista com todos os empregos
+            # onde o salário "salary" estiver entre os valores da coluna
+            # min_salary e max_salary.
+            if (
+                int(info["min_salary"])
+                <= int(salary)
+                <= int(info["max_salary"])
+            ):
+                all_jobs_list.append(info)
+    return all_jobs_list
 
-    Parameters
-    ----------
-    jobs : list
-        The jobs to be filtered
-    salary : int
-        The salary to be used as filter
 
-    Returns
-    -------
-    list
-        Jobs whose salary range contains `salary`
-    """
-    raise NotImplementedError
+# tests/test_salaries.py::test_matches_salary_range PASSED
+# tests/test_salaries.py::test_filter_by_salary_range PASSED
