@@ -70,3 +70,24 @@ def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
 
 
 # tests/test_jobs.py::test_filter_by_job_type PASSED
+
+def local_teste_read_brazilian_file(path: str) -> List[Dict]:
+    """Reads a portuguese file from a given path and returns its contents
+
+    Parameters
+    ----------
+    path : str
+        Full path to file
+
+    Returns
+    -------
+    list
+        List of rows as dicts
+    """
+    dict_jobs = read(path)
+    for job in dict_jobs:
+        job["title"] = job.pop("titulo")
+        job["salary"] = job.pop("salario")
+        job["type"] = job.pop("tipo")
+
+    return dict_jobs
