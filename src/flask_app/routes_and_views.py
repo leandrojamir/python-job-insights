@@ -22,6 +22,8 @@ from src.flask_app.more_insights import (
     build_jobs_urls,
 )
 
+from src.flask_app.more_insights import get_job
+
 bp = Blueprint("client", __name__, template_folder="templates")
 
 
@@ -98,10 +100,16 @@ def init_app(app: Flask):
 # 13.2 - Crie a view job, recebendo o parâmetro index
 # A função deve se chamar job. A função deve receber um parâmetro index.
 def job(index):
-    return
+    #  13.3 - Implemente view job para que ela retorne status code 200 para
+    # jobs válidos
+    # A função deve chamar a read para ter uma lista com todos os jobs.
+    all_jobs = read("data/jobs.csv")
+    #  A função deve chamar a get_job, declarada no arquivo
+    # src/flask_app/more_insights.py, para selecionar um job específico pelo
+    # index.
+    job_index = get_job(all_jobs, index)
+    return job_index
 
-# A função deve chamar a read para ter uma lista com todos os jobs.
-#  A função deve chamar a get_job, declarada no arquivo
-# src/flask_app/more_insights.py, para selecionar um job específico pelo index.
+
 #  A função deve renderizar o template job.jinja2, passando um parâmetro job
 # contendo o job retornado pela get_job.
