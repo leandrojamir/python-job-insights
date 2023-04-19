@@ -108,8 +108,9 @@ def job(index):
     # src/flask_app/more_insights.py, para selecionar um job específico pelo
     # index.
     job_index = get_job(all_jobs, index)
-    return job_index
-
-
-#  A função deve renderizar o template job.jinja2, passando um parâmetro job
-# contendo o job retornado pela get_job.
+    #  13.4 - Implemente view job de forma a retornar o HTML exato de uma
+    # página de job
+    #  A função deve renderizar o template job.jinja2, passando um parâmetro
+    # job contendo o job retornado pela get_job.
+    job_page = render_template("job.jinja2", job=job_index)
+    return job_page
