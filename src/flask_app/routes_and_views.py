@@ -81,3 +81,27 @@ def list_jobs():
 
 def init_app(app: Flask):
     app.register_blueprint(bp)
+
+
+# Requisitos Bônus
+# 13 - (Bônus) Implemente a página de um job
+# Implemente em: src/flask_app/routes_and_views.py
+
+#  Para fechar com chave de ouro, que tal testar o quanto você consegue
+# aprender de Flask apenas vendo como fizemos as páginas de index e de jobs,
+# e tentar criar uma página que irá exibir todas as informações de um job
+# em específico?
+
+# 13.1 - Crie a rota /job recebendo o parâmetro index
+# A função deve ser decorada com a rota /job/<index>.
+@bp.route("/job/<index>")
+# 13.2 - Crie a view job, recebendo o parâmetro index
+# A função deve se chamar job. A função deve receber um parâmetro index.
+def job(index):
+    return
+
+# A função deve chamar a read para ter uma lista com todos os jobs.
+#  A função deve chamar a get_job, declarada no arquivo
+# src/flask_app/more_insights.py, para selecionar um job específico pelo index.
+#  A função deve renderizar o template job.jinja2, passando um parâmetro job
+# contendo o job retornado pela get_job.
