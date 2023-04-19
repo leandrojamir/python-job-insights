@@ -2,9 +2,7 @@
 
 <details>
   <summary><strong>👨‍💻 O que deverá ser desenvolvido</strong></summary><br />
-  <p align="center">
-    <img src="/.images/job.png" alt="Logo Aplicação" width="300"/>
-  </p>
+
   
   Neste projeto você implementará análises a partir de um conjunto de dados sobre empregos. Suas implementações serão incorporadas a um aplicativo Web desenvolvido com Flask (um framework web muito popular na comunidade Python). Você também terá a oportunidade de escrever testes para a implementação de uma análise de dados. Por fim, como bônus, você terá o desafio de escrever uma rota e view para um recurso novo usando Flask!
 
@@ -215,10 +213,6 @@ Os dados apresentam faixas salariais para cada emprego exibido. Vamos agora enco
 
 
 ## 6 - Implemente a função `filter_by_job_type`
-<p align="center">
-  <img src="/.images/filter.png" alt="Contagem" width="400"/>
-</p>
-
 > **Implemente em:** `src/insights/jobs.py`
 
 Os empregos estão listados em um aplicativo web. Para permitir que a pessoa usuária possa filtrar os empregos por tipo de emprego, vamos precisar implementar esse filtro.
@@ -267,10 +261,6 @@ Agora vamos implementar o filtro propriamente dito. Para esta filtragem, podemos
 
 ## 10 - Implemente um teste para a função `count_ocurrences`
 > **Implemente em:** `tests/counter/test_counter.py`
-
-  <p align="center">
-    <img src="/.images/flask.png" alt="Imagem sobre contar ocorrências" width="600"/>
-  </p>
 
 A empresa cliente contratou um relatório que informa a quantidade de ocorrências das palavra *Python* e *Javascript* nos dados e, para isso, temos uma implementação pronta em `src/pre_built/counter.py`. Durante o desenvolvimento, sofremos com alguns `bugs`, que já foram resolvidos. Para termos certeza e confiança da nossa entrega, no entanto, e não corrermos riscos, precisaremos de *testes automatizados* que garantam isso!
 
